@@ -35,7 +35,15 @@ class WhiteSpaceTerminator(GObject.Object, Gedit.WindowActivatable):
             strip_start.backward_chars(len(text) - len(text.rstrip()))
             document.delete(strip_start, strip_stop)
         document.delete(strip_start, document.get_end_iter())
+        """Adds new line at end of the file"""
+        buffer_end = document.get_end_iter()
+        itr = buffer_end.copy()
+        if itr.backward_char():
+            if not itr.get_text(buffer_end) == "\n":
+                document.insert(buffer_end, "\n")
+
 
     def do_deactivate(self):
         for obj, handler in self.handlers:
             obj.disconnect(handler)
+
