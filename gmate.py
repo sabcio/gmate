@@ -27,7 +27,7 @@ if len(sys.argv) > 1:
         config.set_string(os.path.join(base,'virtual_root'), url)
     else:
         parameters += ' "%s"' % path
-    os.system('nohup gedit ' + parameters + ' --new-window > /dev/null 2>&1 &')
+    os.system('nohup gedit ' + parameters + ' --new-window --standalone > /dev/null 2>&1 &')
 else:
     os.system('nohup gedit > /dev/null 2>&1 &')
 
